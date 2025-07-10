@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/config";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -42,8 +42,10 @@ export default function Login() {
         />
 
         <button type="submit" style={styles.button}>Login</button>
+
         <p style={styles.note}>
-          Don’t have an account? <a href="/register" style={styles.link}>Register</a>
+          Don’t have an account?{" "}
+          <Link to="/register" style={styles.link}>Register</Link>
         </p>
       </form>
     </div>
@@ -52,14 +54,14 @@ export default function Login() {
 
 const styles = {
   container: {
-    backgroundColor:"#f0fff4",
+    backgroundColor: "#f0fff4",
     minHeight: "100vh",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
   },
   form: {
-    backgroundColor:"#f0fff4",
+    backgroundColor: "#f0fff4",
     padding: "40px",
     borderRadius: "10px",
     boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
@@ -103,3 +105,4 @@ const styles = {
     fontWeight: "bold",
   }
 };
+
