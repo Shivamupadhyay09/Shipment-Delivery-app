@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/config";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 export default function Register() {
   const [email, setEmail] = useState("");
@@ -12,7 +12,7 @@ export default function Register() {
     e.preventDefault();
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-      navigate("/");
+      navigate("/login");
     } catch (err) {
       alert(err.message);
     }
@@ -29,6 +29,7 @@ export default function Register() {
           placeholder="Email"
           type="email"
           required
+          autoComplete="email"
           style={styles.input}
         />
 
@@ -38,13 +39,14 @@ export default function Register() {
           placeholder="Password"
           type="password"
           required
+          autoComplete="new-password"
           style={styles.input}
         />
 
         <button type="submit" style={styles.button}>Register</button>
 
         <p style={styles.note}>
-          Already have an account? <a href="/login" style={styles.link}>Login</a>
+          Already have an account? <Link to="/login" style={styles.link}>Login</Link>
         </p>
       </form>
     </div>
@@ -60,7 +62,7 @@ const styles = {
     alignItems: "center",
   },
   form: {
-    backgroundColor: "#f0fff4",
+    backgroundColor: "#ffffff",
     padding: "40px",
     borderRadius: "10px",
     boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
